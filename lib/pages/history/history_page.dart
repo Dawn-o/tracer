@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
@@ -17,15 +16,9 @@ class HistoryPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Expenditure History",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 21),
-                      ),
-                    ],
+                  const Text(
+                    "Expenditure History",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
                   ),
                   const SizedBox(
                     height: 20,
@@ -33,7 +26,7 @@ class HistoryPage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "2024",
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 21),
@@ -46,9 +39,14 @@ class HistoryPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white,
-                          border: Border.all(
-                            color: const Color(0xffD9D9D9),
-                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color:
+                                    const Color(0xff1D1617).withOpacity(0.08),
+                                offset: const Offset(0, 0),
+                                blurRadius: 40,
+                                spreadRadius: 0)
+                          ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,9 +93,14 @@ class HistoryPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white,
-                          border: Border.all(
-                            color: const Color(0xffD9D9D9),
-                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color:
+                                    const Color(0xff1D1617).withOpacity(0.08),
+                                offset: const Offset(0, 0),
+                                blurRadius: 40,
+                                spreadRadius: 0)
+                          ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -144,9 +147,14 @@ class HistoryPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white,
-                          border: Border.all(
-                            color: const Color(0xffD9D9D9),
-                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color:
+                                    const Color(0xff1D1617).withOpacity(0.08),
+                                offset: const Offset(0, 0),
+                                blurRadius: 40,
+                                spreadRadius: 0)
+                          ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -193,9 +201,14 @@ class HistoryPage extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white,
-                          border: Border.all(
-                            color: const Color(0xffD9D9D9),
-                          ),
+                          boxShadow: [
+                            BoxShadow(
+                                color:
+                                    const Color(0xff1D1617).withOpacity(0.08),
+                                offset: const Offset(0, 0),
+                                blurRadius: 40,
+                                spreadRadius: 0)
+                          ],
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,

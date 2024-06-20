@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tracer/summary_page.dart';
-import 'package:tracer/today_detail_page.dart';
+import 'package:tracer/pages/form.dart';
+import 'package:tracer/pages/summary/summary_page.dart';
+import 'package:tracer/pages/home/today_detail_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tracer/history_page.dart';
-import 'package:tracer/home_page.dart';
+import 'package:tracer/pages/history/history_page.dart';
+import 'package:tracer/pages/home/home_page.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -57,16 +58,34 @@ class _MainLayoutState extends State<MainLayout> {
             fontFamily: 'Libre Baskerville',
           ),
         ),
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 24.0),
-            child: Icon(Icons.add, size: 35),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => FormPage(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size.zero,
+                padding: EdgeInsets.zero,
+                surfaceTintColor: Colors.transparent,
+                elevation: 0,
+              ),
+              child: const Icon(
+                Icons.add,
+                size: 30,
+                color: Colors.black,
+              ),
+            ),
           ),
         ],
         iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: _widgetOptions[_selectedIndex],
-      
       bottomNavigationBar: SizedBox(
         height: 90,
         child: BottomNavigationBar(

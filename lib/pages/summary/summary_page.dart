@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:intl/intl.dart';
 
 class SummaryPage extends StatelessWidget {
   const SummaryPage({super.key});
@@ -16,15 +15,9 @@ class SummaryPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Expenses This Month",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
-                    ),
-                  ],
+                const Text(
+                  "Expenses This Month",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
                 ),
                 const SizedBox(
                   height: 20,
@@ -36,9 +29,13 @@ class SummaryPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.white,
-                        border: Border.all(
-                          color: const Color(0xffD9D9D9),
-                        ),
+                        boxShadow: [
+                          BoxShadow(
+                              color: const Color(0xff1D1617).withOpacity(0.08),
+                              offset: const Offset(0, 0),
+                              blurRadius: 40,
+                              spreadRadius: 0)
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,9 +82,13 @@ class SummaryPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.white,
-                        border: Border.all(
-                          color: const Color(0xffD9D9D9),
-                        ),
+                        boxShadow: [
+                          BoxShadow(
+                              color: const Color(0xff1D1617).withOpacity(0.08),
+                              offset: const Offset(0, 0),
+                              blurRadius: 40,
+                              spreadRadius: 0)
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,9 +135,13 @@ class SummaryPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.white,
-                        border: Border.all(
-                          color: const Color(0xffD9D9D9),
-                        ),
+                        boxShadow: [
+                          BoxShadow(
+                              color: const Color(0xff1D1617).withOpacity(0.08),
+                              offset: const Offset(0, 0),
+                              blurRadius: 40,
+                              spreadRadius: 0)
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -183,9 +188,13 @@ class SummaryPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: Colors.white,
-                        border: Border.all(
-                          color: const Color(0xffD9D9D9),
-                        ),
+                        boxShadow: [
+                          BoxShadow(
+                              color: const Color(0xff1D1617).withOpacity(0.08),
+                              offset: const Offset(0, 0),
+                              blurRadius: 40,
+                              spreadRadius: 0)
+                        ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -237,9 +246,13 @@ class SummaryPage extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               color: Colors.white,
-              border: Border.all(
-                color: const Color(0xffD9D9D9),
-              ),
+              boxShadow: [
+                BoxShadow(
+                    color: const Color(0xff1D1617).withOpacity(0.08),
+                    offset: const Offset(0, 0),
+                    blurRadius: 40,
+                    spreadRadius: 0)
+              ],
             ),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

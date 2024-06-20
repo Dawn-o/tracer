@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tracer/main_layout.dart';
+import 'package:tracer/pages/main_layout.dart';
 
 void main() {
   runApp(const MyApp());
