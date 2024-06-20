@@ -1,8 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:tracer/summary_page.dart';
+import 'package:tracer/today_detail_page.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tracer/history_page.dart';
+import 'package:tracer/home_page.dart';
 
-class MainLayout extends StatelessWidget {
+class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
+
+  @override
+  State<MainLayout> createState() => _MainLayoutState();
+}
+
+class _MainLayoutState extends State<MainLayout> {
+  int _selectedIndex = 0;
+  Map<int, GlobalKey<NavigatorState>> navigatorKeys = {
+    0: GlobalKey<NavigatorState>(),
+    1: GlobalKey<NavigatorState>(),
+    2: GlobalKey<NavigatorState>(),
+    3: GlobalKey<NavigatorState>(),
+  };
+
+  final List<Widget> _widgetOptions = <Widget>[
+    HomePage(),
+    SummaryPage(),
+    HistoryPage(),
+  ];
+
+  void _onTimeTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  Future<bool> _onWillPop() async {
+    if (_selectedIndex != 0) {
+      setState(() {
+        _selectedIndex = 0;
+      });
+      return Future.value(false);
+    }
+    return Future.value(true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,192 +65,35 @@ class MainLayout extends StatelessWidget {
         ],
         iconTheme: const IconThemeData(color: Colors.black),
       ),
-      body: ListView(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Expenses This Month",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
-                    ),
-                    Text(
-                      "Rp. 75.000",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: const Color(0xffD9D9D9),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                DateFormat('MMMEd')
-                                    .format(DateTime.now())
-                                    .toString(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const Text(
-                                "Rp. 25.000",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                ),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size.zero,
-                              padding: EdgeInsets.zero,
-                              surfaceTintColor: Colors.transparent,
-                              elevation: 0,
-                            ),
-                            onPressed: () {},
-                            child: const Icon(
-                              color: Colors.black,
-                              Icons.arrow_forward_ios_rounded,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: const Color(0xffD9D9D9),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                DateFormat('MMMEd')
-                                    .format(DateTime.now())
-                                    .toString(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const Text(
-                                "Rp. 25.000",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                ),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size.zero,
-                              padding: EdgeInsets.zero,
-                              surfaceTintColor: Colors.transparent,
-                              elevation: 0,
-                            ),
-                            onPressed: () {},
-                            child: const Icon(
-                              color: Colors.black,
-                              Icons.arrow_forward_ios_rounded,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.white,
-                        border: Border.all(
-                          color: const Color(0xffD9D9D9),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                DateFormat('MMMEd')
-                                    .format(DateTime.now())
-                                    .toString(),
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                ),
-                              ),
-                              const Text(
-                                "Rp. 25.000",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                ),
-                              ),
-                            ],
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: Size.zero,
-                              padding: EdgeInsets.zero,
-                              surfaceTintColor: Colors.transparent,
-                              elevation: 0,
-                            ),
-                            onPressed: () {},
-                            child: const Icon(
-                              color: Colors.black,
-                              Icons.arrow_forward_ios_rounded,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                  ],
-                ),
-              ],
+      body: _widgetOptions[_selectedIndex],
+      
+      bottomNavigationBar: SizedBox(
+        height: 90,
+        child: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.house,
+              ),
+              label: "Home",
             ),
-          ),
-        ],
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.listCheck,
+              ),
+              label: "Summary",
+            ),
+            BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.clockRotateLeft,
+              ),
+              label: "History",
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: const Color(0xff92C7CF),
+          onTap: _onTimeTapped,
+        ),
       ),
     );
   }
