@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "378299871784",
+    "project_id": "tracer-14843",
+    "storage_bucket": "tracer-14843.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378299871784:android:a59dec2699b0afa393fb1d",
+        "android_client_info": {
+          "package_name": "com.example.tracer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBeAI1UuEBxaMzzA8RHAm2HEDTLaKoUjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

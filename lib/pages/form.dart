@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:tracer/helper/db_helper.dart';
+import 'package:tracer/services/firestore.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({super.key});
@@ -10,37 +9,13 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
-  final DBHelper dbHelper = DBHelper();
+  final FirestoreService firestoreService = FirestoreService();
+
   final _formkey = GlobalKey<FormState>();
 
   final TextEditingController _itemNameController = TextEditingController();
   final TextEditingController _itemPriceController = TextEditingController();
   var dateTimeController = DateTime.now();
-
-  Future<void> _addExpense() async {
-    await dbHelper.insertExpense({
-      'item_name': _itemNameController.text,
-      'item_price': _itemPriceController.text,
-      'date_time': dateTimeController,
-    });
-    Navigator.of(context).pop();
-
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Expenses Added')));
-  }
-
-  Future<void> _updateExpense(int id) async {
-    await dbHelper.updateExpense({
-      'id': id,
-      'item_name': _itemNameController.text,
-      'item_price': _itemPriceController.text,
-    });
-    Navigator.of(context).pop(true);
-    Navigator.of(context).pop(true);
-
-    ScaffoldMessenger.of(context)
-        .showSnackBar(const SnackBar(content: Text('Expenses Edited')));
-  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,7 +140,10 @@ class _FormPageState extends State<FormPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    if (_formkey.currentState!.validate()) {}
+                    if (_formkey.currentState!.validate()) {
+                      firestoreService.AddExpense(
+                          _itemNameController.text, _itemPriceController.text);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.zero,

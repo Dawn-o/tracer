@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:tracer/home_page2.dart';
 import 'package:tracer/pages/form.dart';
 import 'package:tracer/pages/summary/summary_page.dart';
-import 'package:tracer/pages/home/today_detail_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tracer/pages/history/history_page.dart';
 import 'package:tracer/pages/home/home_page.dart';
@@ -24,7 +23,7 @@ class _MainLayoutState extends State<MainLayout> {
   };
 
   final List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
+    HomePage2(),
     SummaryPage(),
     HistoryPage(),
   ];

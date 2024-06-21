@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tracer/helper/db_helper.dart';
 import 'package:tracer/pages/home/today_detail_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,21 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final DBHelper dbHelper = DBHelper();
-  List<Map<String, dynamic>> _expenses = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _refreshExpense();
-  }
-
-  void _refreshExpense() async {
-    final data = await dbHelper.queryAllExpense();
-    setState(() {
-      _expenses = data;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +29,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Column(
                 children: [
-                  ..._expenses.map((expense) {
-                    return Column(
+                  Column(
                       children: [
                         Container(
                           padding: const EdgeInsets.all(20),
@@ -70,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Text(
                                     DateFormat('MMMEd')
-                                        .format(expense['date_time'])
+                                        .format(DateTime.now())
                                         .toString(),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w500,
@@ -78,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                    Text(
-                                    expense['item_price'],
+                                    "Rp. 25.000",
                                     style: TextStyle(
                                       fontSize: 19,
                                     ),
@@ -111,8 +94,8 @@ class _HomePageState extends State<HomePage> {
                           height: 12,
                         ),
                       ],
-                    );
-                  }),
+                    ),
+                 
                 ],
               ),
             ],
