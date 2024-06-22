@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tracer/services/firestore.dart';
 
 class FormPage extends StatefulWidget {
-  const FormPage({super.key});
-
+  FormPage({super.key, required this.docID});
+  final docID;
   @override
   State<FormPage> createState() => _FormPageState();
 }
@@ -15,7 +15,6 @@ class _FormPageState extends State<FormPage> {
 
   final TextEditingController _itemNameController = TextEditingController();
   final TextEditingController _itemPriceController = TextEditingController();
-  var dateTimeController = DateTime.now();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,9 +140,17 @@ class _FormPageState extends State<FormPage> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formkey.currentState!.validate()) {
-                      firestoreService.AddExpense(
-                          _itemNameController.text, _itemPriceController.text);
+                      if (widget.docID == null) {
+                        firestoreService.AddExpense(_itemNameController.text,
+                            _itemPriceController.text);
+                      } else {
+                        firestoreService.updateExpense(
+                            widget.docID,
+                            _itemNameController.text,
+                            _itemPriceController.text);
+                      }
                     }
+                    Navigator.of(context).pop();
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.zero,

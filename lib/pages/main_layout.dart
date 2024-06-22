@@ -23,7 +23,7 @@ class _MainLayoutState extends State<MainLayout> {
   };
 
   final List<Widget> _widgetOptions = <Widget>[
-    HomePage2(),
+    HomePage(),
     SummaryPage(),
     HistoryPage(),
   ];
@@ -64,7 +64,7 @@ class _MainLayoutState extends State<MainLayout> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => FormPage(),
+                    builder: (_) => FormPage(docID: null,),
                   ),
                 );
               },

@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirestoreService {
@@ -12,14 +10,14 @@ class FirestoreService {
     return expenses.add({
       'item_name': item_name,
       'item_price': item_price,
-      'timestamp': Timestamp.now(),
+      'purchase_time': DateTime.now(),
     });
   }
 
   // READ : get Expenses data from database
   Stream<QuerySnapshot> getExpensesStream() {
     final expensesStream =
-        expenses.orderBy('timestamp', descending: true).snapshots();
+        expenses.orderBy('purchase_time', descending: true).snapshots();
 
     return expensesStream;
   }
@@ -29,5 +27,9 @@ class FirestoreService {
       'item_name': newName,
       'item_price': newPrice,
     });
+  }
+
+  Future<void> deleteExpense(String docID) {
+    return expenses.doc(docID).delete();
   }
 }
