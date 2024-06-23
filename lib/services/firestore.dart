@@ -10,14 +10,14 @@ class FirestoreService {
     return expenses.add({
       'item_name': item_name,
       'item_price': item_price,
-      'purchase_time': DateTime.now(),
+      'timestamp': Timestamp.now(),
     });
   }
 
   // READ : get Expenses data from database
   Stream<QuerySnapshot> getExpensesStream() {
     final expensesStream =
-        expenses.orderBy('purchase_time', descending: true).snapshots();
+        expenses.orderBy('timestamp', descending: true).snapshots();
 
     return expensesStream;
   }

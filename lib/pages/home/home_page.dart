@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Today's Expenses",
                 style: TextStyle(fontWeight: FontWeight.w500, fontSize: 21),
               ),
@@ -43,9 +43,12 @@ class _HomePageState extends State<HomePage> {
                             String docID = document.id;
                             Map<String, dynamic> data =
                                 document.data() as Map<String, dynamic>;
-                            String item_name = data['item_name'];
-                            String item_price = data['item_price'];
-                            DateTime purchase_time = data['purchase_time'];
+                            String itemName = data['item_name'];
+                            String itemPrice = NumberFormat("#,##0", "en_US")
+                                .format(int.parse(data['item_price']))
+                                .toString();
+                            String date = DateFormat('jm').format(
+                                (data['timestamp'] as Timestamp).toDate());
                             return Column(
                               children: [
                                 Column(
@@ -73,17 +76,15 @@ class _HomePageState extends State<HomePage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                DateFormat('MMMEd')
-                                                    .format(purchase_time)
-                                                    .toString(),
+                                                date,
                                                 style: const TextStyle(
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: 20,
                                                 ),
                                               ),
                                               Text(
-                                                item_price,
-                                                style: TextStyle(
+                                                "Rp. $itemPrice",
+                                                style: const TextStyle(
                                                   fontSize: 19,
                                                 ),
                                               ),
@@ -101,7 +102,12 @@ class _HomePageState extends State<HomePage> {
                                               Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                   builder: (_) =>
-                                                      TodayDetailPage(),
+                                                      TodayDetailPage(
+                                                    docID: docID,
+                                                    itemName: itemName,
+                                                    itemPrice: itemPrice,
+                                                    date: date,
+                                                  ),
                                                 ),
                                               );
                                             },

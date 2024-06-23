@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tracer/services/firestore.dart';
 
 class FormPage extends StatefulWidget {
-  FormPage({super.key, required this.docID});
+  const FormPage({super.key, required this.docID});
   final docID;
   @override
   State<FormPage> createState() => _FormPageState();
@@ -16,6 +17,24 @@ class _FormPageState extends State<FormPage> {
   final TextEditingController _itemNameController = TextEditingController();
   final TextEditingController _itemPriceController = TextEditingController();
 
+  void initState() {
+    super.initState();
+    if (widget.docID != null) {
+      getDocumentById(widget.docID);
+    }
+  }
+
+  void getDocumentById(String docID) async {
+    DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+        .collection('expenses')
+        .doc(docID)
+        .get();
+  
+      _itemNameController.text = documentSnapshot['item_name'];
+      _itemPriceController.text = documentSnapshot['item_price'];
+  
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -28,7 +47,6 @@ class _FormPageState extends State<FormPage> {
             fontFamily: 'Libre Baskerville',
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: ListView(
         padding: const EdgeInsets.all(24),
@@ -116,6 +134,7 @@ class _FormPageState extends State<FormPage> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: _itemPriceController,
                       decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -141,16 +160,19 @@ class _FormPageState extends State<FormPage> {
                   onPressed: () {
                     if (_formkey.currentState!.validate()) {
                       if (widget.docID == null) {
-                        firestoreService.AddExpense(_itemNameController.text,
-                            _itemPriceController.text);
+                        firestoreService.AddExpense(
+                          _itemNameController.text,
+                          _itemPriceController.text,
+                        );
                       } else {
                         firestoreService.updateExpense(
-                            widget.docID,
-                            _itemNameController.text,
-                            _itemPriceController.text);
+                          widget.docID,
+                          _itemNameController.text,
+                          _itemPriceController.text,
+                        );
                       }
                     }
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(true);
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.zero,

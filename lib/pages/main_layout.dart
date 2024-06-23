@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tracer/home_page2.dart';
 import 'package:tracer/pages/form.dart';
 import 'package:tracer/pages/summary/summary_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,9 +22,9 @@ class _MainLayoutState extends State<MainLayout> {
   };
 
   final List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    SummaryPage(),
-    HistoryPage(),
+    const HomePage(),
+    const SummaryPage(),
+    const HistoryPage(),
   ];
 
   void _onTimeTapped(int index) {
@@ -59,14 +58,18 @@ class _MainLayoutState extends State<MainLayout> {
         ),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 24.0),
+            padding: const EdgeInsets.only(right: 24.0),
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: ()  {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => FormPage(docID: null,),
+                    builder: (_) => const FormPage(
+                      docID: null,
+                    ),
                   ),
                 );
+
+              
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: Size.zero,
@@ -82,7 +85,6 @@ class _MainLayoutState extends State<MainLayout> {
             ),
           ),
         ],
-        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: _widgetOptions[_selectedIndex],
       bottomNavigationBar: SizedBox(
